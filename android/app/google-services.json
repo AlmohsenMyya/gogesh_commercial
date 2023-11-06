@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1093195633733",
+    "project_id": "gogesh-seller",
+    "storage_bucket": "gogesh-seller.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093195633733:android:008ce245c926623c2aff2c",
+        "android_client_info": {
+          "package_name": "com.gogesh.seller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093195633733-b2ssjnvvqdc16mu5h56un5rj3ge7kgj0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gogesh.seller",
+            "certificate_hash": "be32d548e890f2993b4bd5a5028ce8e960af6567"
+          }
+        },
+        {
+          "client_id": "1093195633733-lv94sjtedka127r5tbss1g9pi8bf44cd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyTX1fN4dkY0XXiXMSIZ0lTl4n-N64W5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093195633733-0hlu01lk3aatfs3oss4p4d2rm7hq77gu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

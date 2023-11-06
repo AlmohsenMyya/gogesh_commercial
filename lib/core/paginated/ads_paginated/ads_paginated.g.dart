@@ -1,0 +1,61 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'ads_paginated.dart';
+
+// **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
+class AdsPaginatedAdapter extends TypeAdapter<AdsPaginated> {
+  @override
+  final int typeId = 46;
+
+  @override
+  AdsPaginated read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return AdsPaginated(
+      data: (fields[0] as List).cast<AdsEntity>(),
+      meta: fields[1] as Meta,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, AdsPaginated obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.data)
+      ..writeByte(1)
+      ..write(obj.meta);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AdsPaginatedAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+AdsPaginated _$AdsPaginatedFromJson(Map<String, dynamic> json) => AdsPaginated(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => AdsEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      meta: Meta.fromJson(json['meta'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$AdsPaginatedToJson(AdsPaginated instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'meta': instance.meta,
+    };
