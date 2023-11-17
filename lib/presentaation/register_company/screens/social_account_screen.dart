@@ -63,7 +63,7 @@ class SocialAccountsScreen extends HookWidget {
                             textInputAction: TextInputAction.next,
                             controller: nameFacebook,
                             validator: (p0) {
-                              return nameAccountValidator(p0, true);
+                              // return nameAccountValidator(p0, true);
                             },
                             suffixIcon: const Icon(Ionicons.logo_facebook),
                           ),
@@ -74,7 +74,7 @@ class SocialAccountsScreen extends HookWidget {
                             controller: urlFacebook,
                             suffixIcon: const Icon(Ionicons.logo_facebook),
                             validator: (value) {
-                              return urlValidator(value, nameFacebook.text);
+                              // return urlValidator(value, nameFacebook.text);
                             },
                           ),
                           InputTextField(

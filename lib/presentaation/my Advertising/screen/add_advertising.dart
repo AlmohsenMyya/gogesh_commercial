@@ -746,21 +746,25 @@ calculateNotificationPricing(
     {required double priceDay,
     required int duration,
     required InformationEntity? information}) {
-  if (information!.maxAdsPerNotification != 0) {
+  int notificationCost = information?.notificationCost! as int ;
+  int maxAdsPerNotification = information?.maxAdsPerNotification! as int ;
+  if (maxAdsPerNotification != 0) {
     return '0';
   }
-  return (duration * priceDay + information.notificationCost!).toString();
+  return (duration * priceDay + notificationCost).toString();
 }
 
 calculateSectorsPricing(
     {required double priceDay,
     required int duration,
     required InformationEntity? information}) {
-  if (information!.maxAdsViaSectorBanner != 0) {
+  int maxAdsViaSectorBanner = information?.maxAdsViaSectorBanner! as int ;
+  if (maxAdsViaSectorBanner != 0) {
     return '0';
   }
+  int notificationCost = information?.notificationCost! as int ;
   //ToDo replace notification cost par sectorbanner cost
-  return (duration * priceDay + information.notificationCost!).toString();
+  return (duration * priceDay + notificationCost).toString();
 }
 
 calculateOthersPricing(
@@ -768,16 +772,19 @@ calculateOthersPricing(
     required Places place,
     required int duration,
     required InformationEntity? information}) {
-  if (information!.maxFreeAds != 0 && place == Places.Ads_Screen) {
+  int maxFreeAds = information?.maxFreeAds! as int ;
+  int adsDiscount = information?.adsDiscount! as int ;
+  int offerAdditionCost = information?.offerAdditionCost! as int ;
+  if (maxFreeAds != 0 && place == Places.Ads_Screen) {
     return '0';
   }
-  if (information.maxFreeAds == 0 &&
+  if (maxFreeAds == 0 &&
       place == Places.Ads_Screen &&
-      information.adsDiscount != 0) {
-    return (duration * priceDay * information.adsDiscount! / 100).toString();
+     adsDiscount != 0) {
+    return (duration * priceDay * adsDiscount / 100).toString();
   }
   if (place != Places.Ads_Screen) {
-    return (duration * priceDay + information.offerAdditionCost!).toString();
+    return (duration * priceDay + offerAdditionCost).toString();
   }
 }
   

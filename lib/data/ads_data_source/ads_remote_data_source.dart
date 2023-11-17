@@ -14,7 +14,7 @@ import '../../domain/entities/durations_entity/durations_response.dart';
 part 'ads_remote_data_source.g.dart';
 
 @RestApi(
-  baseUrl: "https://alphadev39.com/commercial/api/v1",
+  baseUrl: "https://api.gogesh.com/api/v1",
   parser: Parser.FlutterCompute,
 )
 abstract class AdsRemoteDataSource {

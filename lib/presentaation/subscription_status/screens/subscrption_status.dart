@@ -93,8 +93,9 @@ class StateSubscriptionScreen extends HookWidget {
                                   return Text(
                                     // ignore: prefer_interpolation_to_compose_strings
                                     '⚫'
-                                            " " +
-                                        e,
+                                            " "
+                                        + e
+                                    ,
                                     style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,

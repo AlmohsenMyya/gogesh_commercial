@@ -59,9 +59,10 @@ class AddOffersUseCase extends UseCase<String, OfferRequest> {
         body: body,
         language: keyLanguage,
       );
-      if (information!.maxOffers != 0) {
+      int maxOffers = information?.maxOffers! as int ;
+      if (maxOffers != 0) {
         await localDataSource.setValue(LocalDataKeys.infoamationPackage,
-            information.copyWith(maxOffers: information.maxOffers! - 1));
+            information?.copyWith(maxOffers: maxOffers - 1));
       }
 
       return const Result.success(data: '');

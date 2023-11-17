@@ -76,24 +76,26 @@ class AdsRepositoryImpl implements AdsRepository {
 
       final result = await _remoteDataSource.addAds(
           auth: token, body: body, language: keyLanguage);
-
-      if (information!.maxFreeAds != 0 &&
+int maxFreeAds = information?.maxFreeAds! as int ;
+      int maxAdsPerNotification = information?.maxAdsPerNotification! as int ;
+      int maxAdsViaSectorBanner = information?.maxAdsViaSectorBanner! as int ;
+      if (maxFreeAds != 0 &&
           params.place != '' &&
           params.place != '') {
         await _localDataSource.setValue(LocalDataKeys.infoamationPackage,
-            information.copyWith(maxFreeAds: information.maxFreeAds! - 1));
+            information?.copyWith(maxFreeAds: maxFreeAds - 1 ));
       }
-      if (information.maxAdsPerNotification != 0 && params.place == '') {
+      if (maxAdsPerNotification != 0 && params.place == '') {
         await _localDataSource.setValue(
             LocalDataKeys.infoamationPackage,
-            information.copyWith(
-                maxAdsPerNotification: information.maxAdsPerNotification! - 1));
+            information?.copyWith(
+                maxAdsPerNotification: maxAdsPerNotification - 1));
       }
-      if (information.maxAdsViaSectorBanner != 0 && params.place == '') {
+      if (maxAdsViaSectorBanner != 0 && params.place == '') {
         await _localDataSource.setValue(
             LocalDataKeys.infoamationPackage,
-            information.copyWith(
-                maxAdsViaSectorBanner: information.maxAdsViaSectorBanner! - 1));
+            information?.copyWith(
+                maxAdsViaSectorBanner: maxAdsViaSectorBanner  - 1));
       }
 
       return const Result.success(data: '');

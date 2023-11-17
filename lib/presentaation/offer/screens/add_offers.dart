@@ -959,14 +959,16 @@ String? pricingAddOffers(
     {required double price,
     required int? durationId,
     required InformationEntity? information}) {
-  if (information?.maxOffers != 0 && durationId == null) {
+  int maxOffers = information?.maxOffers! as int ;
+  int offerAdditionCost = information?.offerAdditionCost! as int ;
+  if (maxOffers != 0 && durationId == null) {
     return '0';
-  } else if (information?.maxOffers == 0 && durationId == null) {
+  } else if (maxOffers == 0 && durationId == null) {
     return information?.offerAdditionCost.toString();
-  } else if (information?.maxOffers != 0 && durationId != null) {
+  } else if (maxOffers != 0 && durationId != null) {
     return price.toString();
-  } else if (information?.maxOffers == 0 && durationId != null) {
-    return (price + information!.offerAdditionCost!).toString();
+  } else if (maxOffers == 0 && durationId != null) {
+    return (price + offerAdditionCost).toString();
   }
 
   return '';

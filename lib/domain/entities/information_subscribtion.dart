@@ -8,31 +8,34 @@ class InformationResponse {
   const InformationResponse({
     required this.information,
   });
+
   @JsonKey(name: "data")
   final InformationEntity information;
+
   factory InformationResponse.fromJson(Map<String, dynamic> json) =>
       _$InformationResponseFromJson(json);
+
   Map<String, dynamic> toJson() => _$InformationResponseToJson(this);
 }
 
 class InformationEntity {
   int? id;
   String? name;
-  int? maxOffers;
-  int? offerAdditionCost;
-  int? maxOfferChange;
-  int? offerChangeCost;
-  int? maxSpecialties;
-  int? specialtyAdditionCost;
-  int? notificationCost;
-  int? maxAdsPerNotification;
-  int? maxFreeAds;
-  List<String>? features;
-  int? duration;
-  int? price;
-  int? maxUsers;
-  int? maxAdsViaSectorBanner;
-  int? adsDiscount;
+  String? maxOffers;
+  String? offerAdditionCost;
+  String? maxOfferChange;
+  String? offerChangeCost;
+  String? maxSpecialties;
+  String? specialtyAdditionCost;
+  String? notificationCost;
+  String? maxAdsPerNotification;
+  String? maxFreeAds;
+  List<String?>? features;
+  String? duration;
+  String? price;
+  String? maxUsers;
+  String? maxAdsViaSectorBanner;
+  String? adsDiscount;
 
   InformationEntity(
       {this.id,
@@ -54,6 +57,7 @@ class InformationEntity {
       this.adsDiscount});
 
   InformationEntity.fromJson(Map<String, dynamic> json) {
+    print("rreerere");
     id = json['id'];
     name = json['name'];
     maxOffers = json['max_offers'];
@@ -65,7 +69,11 @@ class InformationEntity {
     notificationCost = json['notification_cost'];
     maxAdsPerNotification = json['max_ads_per_notification'];
     maxFreeAds = json['max_free_ads'];
-    features = json['features'].cast<String>();
+    if (json['features'] != null) {
+      features = json['features'].cast<String>();
+    } else {
+      features = null;
+    }
     duration = json['duration'];
     price = json['price'];
     maxUsers = json['max_users'];
@@ -85,7 +93,7 @@ class InformationEntity {
     int? notificationCost,
     int? maxAdsPerNotification,
     int? maxFreeAds,
-    List<String>? features,
+    List<String?>? features,
     int? duration,
     int? price,
     int? maxUsers,
@@ -95,24 +103,24 @@ class InformationEntity {
     return InformationEntity(
       id: id ?? this.id,
       name: name ?? this.name,
-      maxOffers: maxOffers ?? this.maxOffers,
-      offerAdditionCost: offerAdditionCost ?? this.offerAdditionCost,
-      maxOfferChange: maxOfferChange ?? this.maxOfferChange,
-      offerChangeCost: offerChangeCost ?? this.offerChangeCost,
-      maxSpecialties: maxSpecialties ?? this.maxSpecialties,
+      maxOffers: maxOffers.toString() ?? this.maxOffers,
+      offerAdditionCost: offerAdditionCost.toString() ?? this.offerAdditionCost,
+      maxOfferChange: maxOfferChange.toString() ?? this.maxOfferChange,
+      offerChangeCost: offerChangeCost.toString() ?? this.offerChangeCost,
+      maxSpecialties: maxSpecialties.toString() ?? this.maxSpecialties,
       specialtyAdditionCost:
-          specialtyAdditionCost ?? this.specialtyAdditionCost,
-      notificationCost: notificationCost ?? this.notificationCost,
+          specialtyAdditionCost.toString() ?? this.specialtyAdditionCost,
+      notificationCost: notificationCost.toString() ?? this.notificationCost,
       maxAdsPerNotification:
-          maxAdsPerNotification ?? this.maxAdsPerNotification,
-      maxFreeAds: maxFreeAds ?? this.maxFreeAds,
+          maxAdsPerNotification.toString() ?? this.maxAdsPerNotification,
+      maxFreeAds: maxFreeAds.toString() ?? this.maxFreeAds,
       features: features ?? this.features,
-      duration: duration ?? this.duration,
-      price: price ?? this.price,
-      maxUsers: maxUsers ?? this.maxUsers,
+      duration: duration.toString() ?? this.duration,
+      price: price.toString() ?? this.price,
+      maxUsers: maxUsers.toString() ?? this.maxUsers,
       maxAdsViaSectorBanner:
-          maxAdsViaSectorBanner ?? this.maxAdsViaSectorBanner,
-      adsDiscount: adsDiscount ?? this.adsDiscount,
+          maxAdsViaSectorBanner.toString() ?? this.maxAdsViaSectorBanner,
+      adsDiscount: adsDiscount.toString() ?? this.adsDiscount,
     );
   }
 

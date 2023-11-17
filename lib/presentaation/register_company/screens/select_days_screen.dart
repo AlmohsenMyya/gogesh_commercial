@@ -247,6 +247,7 @@ class SelectDaysScreen extends StatelessWidget {
                                             }
                                           });
                                         },
+
                                         value: listIsChecked[index],
                                         controllerfrom: textFieldfrom[index],
                                         validatorfrom: (valuefrom) {

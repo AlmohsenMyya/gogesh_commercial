@@ -1439,14 +1439,17 @@ String pricingEditOffers(
     {required double price,
     required int? durationId,
     required InformationEntity? information}) {
-  if (information!.maxOfferChange != 0 && durationId == null) {
+  int maxOfferChange = information?.maxOfferChange! as int ;
+  int offerChangeCost = information?.offerChangeCost! as int ;
+  int offerAdditionCost = information?.offerAdditionCost! as int ;
+  if (maxOfferChange != 0 && durationId == null) {
     return '0';
-  } else if (information.maxOfferChange == 0 && durationId == null) {
-    return information.offerChangeCost.toString();
-  } else if (information.maxOfferChange != 0 && durationId != null) {
+  } else if (maxOfferChange == 0 && durationId == null) {
+    return offerChangeCost.toString();
+  } else if (maxOfferChange != 0 && durationId != null) {
     return price.toString();
-  } else if (information.maxOfferChange == 0 && durationId != null) {
-    return (price + information.offerAdditionCost!).toString();
+  } else if (maxOfferChange == 0 && durationId != null) {
+    return (price + offerAdditionCost!).toString();
   }
 
   return '';
