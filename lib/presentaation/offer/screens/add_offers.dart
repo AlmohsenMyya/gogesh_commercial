@@ -698,24 +698,24 @@ class AddOffers extends HookWidget {
                             ),
                           );
                         }),
-                        InputTextField(
-                            textInputAction: TextInputAction.next,
-                            inputType: TextInputType.number,
-                            suffixIcon: const Icon(
-                              Icons.monetization_on_outlined,
-                              color: AppTheme.green,
-                            ),
-                            label: "المدة بالساعات".tr(),
-                            hint: "المدة بالساعات".tr(),
-                            controller: price,
-                            validator: (value) {
-                              // if (value != null &&
-                              //     value.isNotEmpty &&
-                              //     isFloat(value)) {
-                              //   return null;
-                              // }
-                              // return "please_enter_price".tr();
-                            }),
+                        // InputTextField(
+                        //     textInputAction: TextInputAction.next,
+                        //     inputType: TextInputType.number,
+                        //     suffixIcon: const Icon(
+                        //       Icons.monetization_on_outlined,
+                        //       color: AppTheme.green,
+                        //     ),
+                        //     label: "المدة بالساعات".tr(),
+                        //     hint: "المدة بالساعات".tr(),
+                        //     controller: price,
+                        //     validator: (value) {
+                        //       // if (value != null &&
+                        //       //     value.isNotEmpty &&
+                        //       //     isFloat(value)) {
+                        //       //   return null;
+                        //       // }
+                        //       // return "please_enter_price".tr();
+                        //     }),
                         InputTextField(
                             textInputAction: TextInputAction.next,
                             inputType: TextInputType.number,
@@ -959,8 +959,8 @@ String? pricingAddOffers(
     {required double price,
     required int? durationId,
     required InformationEntity? information}) {
-  int maxOffers = information?.maxOffers! as int ;
-  int offerAdditionCost = information?.offerAdditionCost! as int ;
+  int maxOffers = int.parse(information!.maxOffers!) ;
+  double offerAdditionCost = double.parse(information.offerAdditionCost!);
   if (maxOffers != 0 && durationId == null) {
     return '0';
   } else if (maxOffers == 0 && durationId == null) {

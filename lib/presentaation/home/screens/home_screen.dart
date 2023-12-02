@@ -36,6 +36,7 @@ class HomeScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+
     String? role = sl<LocalDataSource>().getValue(
       LocalDataKeys.role,
     );
@@ -534,6 +535,7 @@ class HomeScreen extends HookWidget {
                       ),
                     ],
                   ),
+
                   if (user?.status == "Active" ||
                       user?.status == "Inactive" && user?.upgraded != null)
                     if (user?.actived == true && role == TypeSeller.admin.name)
@@ -542,7 +544,16 @@ class HomeScreen extends HookWidget {
                         right: context.locale.languageCode == "ar" ? 82.w : 0,
                         left: context.locale.languageCode == "ar" ? 0.w : 82.w,
                         child: FloatingActionButton(
+
                           onPressed: () {
+                            print('''
+                            add button
+                            user!.status :  ${user!.status}
+                            user?.upgraded != null : ${user?.upgraded != null}
+                            user?.actived == :  ${user?.actived}
+                            user!.upgraded?.upgradedStatus ${user!.upgraded?.upgradedStatus}
+                            role == TypeSeller.admin.name ${role == TypeSeller.admin.name}
+                            ''');
                             if (user != null && user.status == "Inactive") {
                               SmartDialog.show(
                                 builder: (context) => Container(
@@ -621,7 +632,7 @@ class HomeScreen extends HookWidget {
                                 ),
                               );
                               return;
-                            }
+                            }///your account has been disabled by the administration due to a violation of a regulatory matter
                             if (user != null &&
                                 user.upgraded?.upgradedStatus == "Pending") {
                               SmartDialog.show(
@@ -686,7 +697,7 @@ class HomeScreen extends HookWidget {
                                 ),
                               );
                               return;
-                            }
+                            }///your account is under review by the administration and you will be notified
                             if (user != null &&
                                 user.upgraded?.upgradedStatus == "Not_Paid" &&
                                 user.actived == false) {
@@ -694,7 +705,7 @@ class HomeScreen extends HookWidget {
 
                               // smartDialogPayment(context);
                               return;
-                            }
+                            } /// push to pay (now it just push to add offer)
 
                             if (user != null &&
                                 user.upgraded?.upgradedStatus == "Rejected") {
@@ -814,19 +825,20 @@ class HomeScreen extends HookWidget {
                                 ),
                               );
                               return;
-                            }
+                            } ///your account has been rejected by the administration. Modify the account and re-submit the request"
                             if (user != null &&
-                                user.upgraded?.upgradedStatus == "Actived" &&
+                                user.upgraded?.upgradedStatus == "Approved" &&
                                 user.actived!) {
                               context.pushNamed(Routes.addOffers.name);
                               return;
-                            }
+                            } /// push to add offer
 
                             //}
                           },
                           child: Icon(
                             Icons.add,
                             size: 20.sp,
+                            color: Colors.white,
                           ),
                         ),
                       )
@@ -836,11 +848,20 @@ class HomeScreen extends HookWidget {
                         right: context.locale.languageCode == "ar" ? 82.w : 0,
                         left: context.locale.languageCode == "ar" ? 0.w : 82.w,
                         child: FloatingActionButton(
+
                           // isExtended: true,
                           tooltip:
                               "Develop_this_account_benefit_from_the_full_services"
                                   .tr(),
                           onPressed: () {
+                            print('''
+                            upgrade button
+                            user!.status :  ${user!.status}
+                            user?.upgraded != null : ${user?.upgraded != null}
+                            user?.actived == :  ${user?.actived}
+                            user!.upgraded?.upgradedStatus ${user!.upgraded?.upgradedStatus}
+                            role == TypeSeller.admin.name ${role == TypeSeller.admin.name}
+                            ''');
                             if (user != null && user.status == "Rejected") {
                               SmartDialog.show(
                                 builder: (contex) => Container(
@@ -951,7 +972,7 @@ class HomeScreen extends HookWidget {
                                 ),
                               );
                               return;
-                            }
+                            } /// Rejected notice
                             if (user != null && user.status == "Pending") {
                               SmartDialog.show(
                                 builder: (context) => Container(
@@ -1015,16 +1036,17 @@ class HomeScreen extends HookWidget {
                                 ),
                               );
                               return;
-                            }
+                            } /// pending notice
                             if (user != null && user.status == "Active") {
 
                               context.pushNamed(Routes.upgradeAccount.name);
                               return;
-                            }
+                            } /// push to upgrade screen
                           },
                           child: Icon(
                             Icons.upgrade_outlined,
                             size: 20.sp,
+                            color: Colors.white,
                           ),
                         ),
                       ),

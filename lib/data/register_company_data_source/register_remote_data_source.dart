@@ -17,7 +17,7 @@ import 'package:flutter/foundation.dart';
 part 'register_remote_data_source.g.dart';
 
 @RestApi(
-  baseUrl: "https://api.gogesh.com/api/v1",
+  baseUrl: "http://progressmaxonline.com/api/v1",
   parser: Parser.FlutterCompute,
 )
 abstract class RegisterRemoteDataSource {

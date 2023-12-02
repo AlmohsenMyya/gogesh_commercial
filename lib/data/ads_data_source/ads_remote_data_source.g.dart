@@ -13,7 +13,7 @@ class _AdsRemoteDataSource implements AdsRemoteDataSource {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://api.gogesh.com/api/v1';
+    baseUrl ??= 'http://progressmaxonline.com/api/v1';
   }
 
   final Dio _dio;

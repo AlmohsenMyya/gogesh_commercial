@@ -24,7 +24,7 @@ import '../../domain/request/auth/reset_password_request.dart';
 part 'auth_data_source.g.dart';
 
 @RestApi(
-  baseUrl: "https://api.gogesh.com/api/v1",
+  baseUrl: "http://progressmaxonline.com/api/v1",
   parser: Parser.FlutterCompute,
 )
 abstract class AuthRemoteDataSource {

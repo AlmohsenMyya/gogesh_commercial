@@ -340,6 +340,7 @@ class SelectDaysScreen extends StatelessWidget {
                                       workDays: workDays,
                                     ),
                                   ));
+                              Navigator.pop(context);
                             } else if (check == 0) {
                               AlertController.show(
                                   "",
