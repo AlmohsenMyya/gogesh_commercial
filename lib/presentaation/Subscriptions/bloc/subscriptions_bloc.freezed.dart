@@ -654,7 +654,7 @@ class _$_error implements _error {
 
   @override
   String toString() {
-    return 'SubscriptionsState.error(error: $error)';
+    return 'SubscriptionsState.error(error: 548723 $error)';
   }
 
   @override

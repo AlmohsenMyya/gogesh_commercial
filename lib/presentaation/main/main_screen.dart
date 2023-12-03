@@ -820,16 +820,31 @@ Future<dynamic> smartDialogPayment(BuildContext context) {
                       ).tr(),
                     ),
                     const Spacer(),
-                    SizedBox(
-                      child: custombuttom(
-                        onTap: () async {
-                          SmartDialog.dismiss();
-
-                          await dialogPayment(context, 35,
-                              'Active_Cmmercial_Activity', null, null, null);
-                        },
-                        child: const Text('activate').tr(),
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 150,
+                          child: custombuttom(
+                            onTap: () async {
+                              SmartDialog.dismiss();
+                              await dialogPayment(context, 35, 'Active_Cmmercial_Activity', null, null, null);
+                            },
+                            child: const Text('activate').tr(),
+                          ),
+                        ),
+                        SizedBox(width: 20),
+                        SizedBox(
+                          width: 150,
+                          child: custombuttom(
+                            onTap: () {
+                              SmartDialog.dismiss();
+                              context.pushNamed(Routes.home.name);
+                            },
+                            child: const Text("pay_latter0").tr(),
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 2.h,

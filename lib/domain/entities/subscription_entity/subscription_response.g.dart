@@ -108,11 +108,11 @@ SubscriptionEntity _$SubscriptionEntityFromJson(Map<String, dynamic> json) =>
     SubscriptionEntity(
       id: json['id'] as int?,
       name: json['name'] as String?,
-      duration: json['duration'] as int?,
+      duration: int.tryParse(json['duration'] ?? ''),
       features: (json['features'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      price: (json['price'] as num?)?.toDouble(),
+      price: double.parse(json['price'] ?? '0'),
     );
 
 Map<String, dynamic> _$SubscriptionEntityToJson(SubscriptionEntity instance) =>

@@ -555,6 +555,7 @@ class HomeScreen extends HookWidget {
                             role == TypeSeller.admin.name ${role == TypeSeller.admin.name}
                             ''');
                             if (user != null && user.status == "Inactive") {
+                              print(''' user.status == "Inactive"''');
                               SmartDialog.show(
                                 builder: (context) => Container(
                                   height: 35.h,
@@ -635,6 +636,7 @@ class HomeScreen extends HookWidget {
                             }///your account has been disabled by the administration due to a violation of a regulatory matter
                             if (user != null &&
                                 user.upgraded?.upgradedStatus == "Pending") {
+                              print(' user.upgraded?.upgradedStatus == "Pending"');
                               SmartDialog.show(
                                 builder: (context) => Container(
                                   height: 25.h,
@@ -701,6 +703,7 @@ class HomeScreen extends HookWidget {
                             if (user != null &&
                                 user.upgraded?.upgradedStatus == "Not_Paid" &&
                                 user.actived == false) {
+                              print(''' user.upgraded?.upgradedStatus == "Not_Paid" ''');
                               context.pushNamed(Routes.addOffers.name);
 
                               // smartDialogPayment(context);
@@ -709,6 +712,7 @@ class HomeScreen extends HookWidget {
 
                             if (user != null &&
                                 user.upgraded?.upgradedStatus == "Rejected") {
+                              print(''' user.upgraded?.upgradedStatus == "Rejected" ''');
                               SmartDialog.show(
                                 builder: (_) => Container(
                                   height: 40.h,
@@ -829,6 +833,7 @@ class HomeScreen extends HookWidget {
                             if (user != null &&
                                 user.upgraded?.upgradedStatus == "Approved" &&
                                 user.actived!) {
+                              print(''' user.upgraded?.upgradedStatus == "Approved" ''');
                               context.pushNamed(Routes.addOffers.name);
                               return;
                             } /// push to add offer

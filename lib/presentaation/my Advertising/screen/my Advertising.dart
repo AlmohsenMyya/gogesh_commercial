@@ -670,12 +670,14 @@ class myAdvertising extends HookWidget {
                             );
                             return;
                           }
-                          // if (user != null &&
-                          //     user.upgraded?.upgradedStatus == "Not_Paid" &&
-                          //     user.actived == false) {
-                          //   smartDialogPayment(context);
-                          //   return;
-                          // }
+                          if (user != null &&
+                              user.upgraded?.upgradedStatus == "Not_Paid" &&
+                              user.actived == false) {
+                            context.pushNamed(Routes.addOffers.name);
+                            // smartDialogPayment(context);
+
+                            return;
+                          }
 
                           if (user != null &&
                               user.upgraded?.upgradedStatus == "Rejected") {
@@ -792,18 +794,19 @@ class myAdvertising extends HookWidget {
                             );
                             return;
                           }
-                          // if (user != null &&
-                          //     user.upgraded?.upgradedStatus == "Actived" &&
-                          //     user.actived!) {
+                          if (user != null &&
+                              user.upgraded?.upgradedStatus == "Approved" &&
+                              user.actived!) {
                           context.pushNamed(Routes.addAdvertising.name);
                           return;
-                          //}
+                          }
 
                           //}
                         },
                         child: Icon(
                           Icons.add,
                           size: 20.sp,
+                          color: Colors.white ,
                         ),
                       ),
                     )
@@ -995,6 +998,7 @@ class myAdvertising extends HookWidget {
                         child: Icon(
                           Icons.upgrade_outlined,
                           size: 20.sp,
+                          color: Colors.white ,
                         ),
                       ),
                     ),

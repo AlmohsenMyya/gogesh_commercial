@@ -72,7 +72,7 @@ class Exceptions with _$Exceptions implements Exception {
         //return message'Network error';
       },
       locationServiceNotEnabled: (data) {
-        'Unknown error: $data'.log();
+        'Unknown error1: $data'.log();
 
         return data ?? 'Ops! Something went wrong!..';
       },
@@ -81,17 +81,17 @@ class Exceptions with _$Exceptions implements Exception {
         return d ?? 'No data!';
       },
       other: (o) {
-        'Unknown error: $o'.log();
+        'Unknown error2: ${o.toString()}'.log();
 
         return o ?? 'Ops! Something went wrong!..';
       },
       emailInvalude: (e) {
-        'Unknown error: $e'.log();
+        'Unknown error3: $e'.log();
 
         return e ?? 'Ops! Something went wrong!..';
       },
       passwordInvalude: (p) {
-        'Unknown error: $p'.log();
+        'Unknown error4: $p'.log();
 
         return p ?? 'Ops! Something went wrong!..';
       },

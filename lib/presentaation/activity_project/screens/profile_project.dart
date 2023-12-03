@@ -219,6 +219,9 @@ class ProfileProjectScreen extends StatelessWidget {
                   ),
                 ),
                 ProfileItem(
+                  onTap: (){
+                    print('ProfileItem 55Statistics ;; jnjcdn ');
+                  },
                   title: "Statistics".tr(),
                   leading: const Icon(Iconsax.chart),
                   trailing: const Icon(

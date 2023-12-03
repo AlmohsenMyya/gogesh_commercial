@@ -60,7 +60,7 @@ class EditSocialAccount extends HookWidget {
     Upgraded? upgraded = user?.upgraded;
     if (user != null) {
       if (upgraded != null) {
-        if (upgraded.socialAccounts!.isNotEmpty) {
+        if (upgraded.socialAccounts!= null && upgraded.socialAccounts!.isNotEmpty) {
           if (upgraded.socialAccounts!.any(
             (element) => element.type == "Facebook",
           )) {

@@ -24,7 +24,7 @@ class StateSubscriptionScreen extends HookWidget {
 
     InformationEntity package = sl<LocalDataSource>().getValue(
       LocalDataKeys.infoamationPackage,
-    );
+    ) ?? InformationEntity();
 
     ProfileEntity? user = sl<LocalDataSource>().getValue(
       LocalDataKeys.profile,
@@ -54,7 +54,7 @@ class StateSubscriptionScreen extends HookWidget {
                       child: Column(
                         children: [
                           Text(
-                            "${"Your_package".tr()} ${package.name!}",
+                            "${"Your_package".tr()} ${package.name?? ''}",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
@@ -64,7 +64,7 @@ class StateSubscriptionScreen extends HookWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "${"Its_duration".tr()} ${package.duration} ${"months".tr()}",
+                                "${"Its_duration".tr()} ${package.duration??''} ${"months".tr()}",
                                 style: TextStyle(
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.bold),
@@ -72,7 +72,7 @@ class StateSubscriptionScreen extends HookWidget {
                               SizedBox(
                                 width: 2.h,
                               ),
-                              Text("${package.price}💲",
+                              Text("${package.price??''}💲",
                                   style: TextStyle(
                                       fontSize: 13.sp,
                                       fontWeight: FontWeight.bold))
@@ -94,7 +94,7 @@ class StateSubscriptionScreen extends HookWidget {
                                     // ignore: prefer_interpolation_to_compose_strings
                                     '⚫'
                                             " "
-                                        // + e
+                                        '${e??'1665'}'
                                     ,
                                     style: const TextStyle(
                                       color: Colors.black,

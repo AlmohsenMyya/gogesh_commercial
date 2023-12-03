@@ -46,7 +46,7 @@ class Subscriptions extends StatelessWidget {
           BlocProvider(
               create: (context) =>
                   SubscriptionsBloc(getPackageSubscrptionUseCase: sl())
-                    ..add(const SubscriptionsEvent.loadPackage()))
+                    ..add( SubscriptionsEvent.loadPackage()))
         ],
         child: Scaffold(
           appBar: AppBar(
@@ -73,12 +73,12 @@ class Subscriptions extends StatelessWidget {
                           ),
                         ),
                       ),
-                      orElse: () => const Text("data"),
                       dataLoaded: (package) => CustomScrollView(
                         slivers: [
                           SliverFillRemaining(
                             hasScrollBody: false,
                             child: Column(
+
                               children: [
                                 // SizedBox()
                                 CarouselSlider(
@@ -96,11 +96,11 @@ class Subscriptions extends StatelessWidget {
                                   items: package.map((i) {
                                     return Builder(
                                       builder: (
-                                        BuildContext context,
-                                      ) {
+                                          BuildContext context,
+                                          ) {
                                         return Container(
                                           width:
-                                              MediaQuery.of(context).size.width,
+                                          MediaQuery.of(context).size.width,
                                           margin: const EdgeInsets.symmetric(
                                             horizontal: 5.0,
                                           ),
@@ -108,7 +108,7 @@ class Subscriptions extends StatelessWidget {
                                           decoration: BoxDecoration(
                                               color: items[state],
                                               borderRadius:
-                                                  BorderRadius.circular(10)),
+                                              BorderRadius.circular(10)),
                                           child: Column(
                                             children: [
                                               Text(
@@ -120,7 +120,7 @@ class Subscriptions extends StatelessWidget {
                                               ),
                                               Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.center,
+                                                MainAxisAlignment.center,
                                                 children: [
                                                   Text(
                                                     "${i.duration}" +
@@ -129,7 +129,7 @@ class Subscriptions extends StatelessWidget {
                                                     style: TextStyle(
                                                         fontSize: 13.sp,
                                                         fontWeight:
-                                                            FontWeight.bold),
+                                                        FontWeight.bold),
                                                   ),
                                                   SizedBox(
                                                     width: 2.h,
@@ -138,37 +138,37 @@ class Subscriptions extends StatelessWidget {
                                                       style: TextStyle(
                                                           fontSize: 13.sp,
                                                           fontWeight:
-                                                              FontWeight.bold))
+                                                          FontWeight.bold))
                                                 ],
                                               ),
                                               Expanded(
                                                 child: SingleChildScrollView(
                                                   physics:
-                                                      const BouncingScrollPhysics(),
+                                                  const BouncingScrollPhysics(),
                                                   child: Column(
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    CrossAxisAlignment
+                                                        .start,
                                                     children: [
                                                       Text(
                                                         "Properties",
                                                         style: TextStyle(
                                                             color: Colors.black,
                                                             fontWeight:
-                                                                FontWeight.bold,
+                                                            FontWeight.bold,
                                                             fontSize: 13.sp),
                                                       ).tr(),
                                                       ...?i.features?.map(
-                                                        (e) {
+                                                            (e) {
                                                           return Text(
                                                             '⚫' " " + e,
                                                             style:
-                                                                const TextStyle(
+                                                            const TextStyle(
                                                               color:
-                                                                  Colors.black,
+                                                              Colors.black,
                                                               fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
+                                                              FontWeight
+                                                                  .w500,
                                                             ),
                                                           );
                                                         },
@@ -202,7 +202,7 @@ class Subscriptions extends StatelessWidget {
                                                         color: Colors.black,
                                                         fontSize: 12.sp,
                                                         fontWeight:
-                                                            FontWeight.w800),
+                                                        FontWeight.w800),
                                                   ).tr(),
                                                 ),
                                               )
@@ -230,6 +230,9 @@ class Subscriptions extends StatelessWidget {
                           ),
                         ],
                       ),
+                      orElse: () => const Text("data"),
+
+
                     );
                   },
                 );

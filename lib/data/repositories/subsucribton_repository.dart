@@ -44,10 +44,12 @@ class SubscriptionResponseImpl implements SubscrptionRepository {
       return Result.failure(
           error: Exceptions.other(ex.response?.data["message"]));
     } on HttpException catch (e) {
+      print('on HttpException catch (e) $e  ${e.message}');
       return Result.failure(error: Exceptions.other(e.message));
     } catch (e) {
+      print('541363 00 $e');
       return const Result.failure(
-          error: Exceptions.other("something_went_wrong"));
+          error: Exceptions.other("something_went_wrong "));
     }
   }
 
@@ -80,7 +82,7 @@ class SubscriptionResponseImpl implements SubscrptionRepository {
     } on HttpException catch (e) {
       return Result.failure(error: Exceptions.other(e.message));
     } catch (e) {
-      print(e);
+      print('541363 $e');
       return const Result.failure(error: Exceptions.other("something_went_wrong"));
     }
   }

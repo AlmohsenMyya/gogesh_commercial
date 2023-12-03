@@ -23,7 +23,8 @@ class SubscriptionsBloc extends Bloc<SubscriptionsEvent, SubscriptionsState> {
       var result = await getPackageSubscrptionUseCase(NoParams());
       return emit(result.when(
         failure: (error) {
-          return const SubscriptionsState.error(error: '');
+          print('554515551122121 ${error?.localizedErrorMessage}');
+          return const SubscriptionsState.error(error: '78546221');
         },
         success: (s) {
           return SubscriptionsState.dataLoaded(package: s!.package);
