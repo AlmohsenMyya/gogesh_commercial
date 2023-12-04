@@ -13,7 +13,7 @@ import '../../domain/entities/durations_entity/durations_response.dart';
 part 'offer_remote_data_source.g.dart';
 
 @RestApi(
-  baseUrl: "http://progressmaxonline.com/api/v1",
+  baseUrl: "https://progressmaxonline.com/api/v1",
   parser: Parser.FlutterCompute,
 )
 abstract class OfferRemoteDataSource {

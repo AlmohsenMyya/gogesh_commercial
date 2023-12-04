@@ -11,7 +11,7 @@ import 'package:retrofit/retrofit.dart';
 part 'remote_data_source.g.dart';
 
 @RestApi(
-  baseUrl: "http://progressmaxonline.com/api/v1",
+  baseUrl: "https://progressmaxonline.com/api/v1",
   parser: Parser.FlutterCompute,
 )
 abstract class RemoteDataSource {

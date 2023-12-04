@@ -13,7 +13,7 @@ class _ProfileRemoteDataSource implements ProfileRemoteDataSource {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://progressmaxonline.com/api/v1';
+    baseUrl ??= 'https://progressmaxonline.com/api/v1';
   }
 
   final Dio _dio;

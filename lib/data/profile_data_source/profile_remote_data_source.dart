@@ -12,7 +12,7 @@ import '../../domain/entities/profile_entity/profile_response.dart';
 part 'profile_remote_data_source.g.dart';
 
 @RestApi(
-  baseUrl: "http://progressmaxonline.com/api/v1",
+  baseUrl: "https://progressmaxonline.com/api/v1",
   parser: Parser.FlutterCompute,
 )
 abstract class ProfileRemoteDataSource {
