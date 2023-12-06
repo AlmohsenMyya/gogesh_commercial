@@ -22,6 +22,7 @@ class DropDownAdsWidget<T extends dynamic> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('iijikj');
     return DropdownButtonHideUnderline(
       child: DropdownButton2<T>(
         hint: loading

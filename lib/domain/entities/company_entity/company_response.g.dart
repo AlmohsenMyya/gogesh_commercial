@@ -146,7 +146,7 @@ CompanyEntity _$CompanyEntityFromJson(Map<String, dynamic> json) =>
       season: (json['season'] as List<dynamic>?)
           ?.map((e) => StandarEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
-      verification: json['verification'] as String?,
+      verification: (json['verification'] as bool?).toString(),
       actived: json['actived'] as bool?,
       id: json['id'] as int,
     );

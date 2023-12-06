@@ -121,20 +121,42 @@ Map<String, dynamic> _$AdsDetailsRasponseToJson(AdsDetailsRasponse instance) =>
       'data': instance.data,
     };
 
-AdsEntity _$AdsEntityFromJson(Map<String, dynamic> json) => AdsEntity(
-      id: json['id'] as int?,
-      description: json['description'] as String?,
-      images: json['images'] as String?,
-      title: json['title'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
-      createdAt: json['created_at'] as String?,
-      status: json['status'] as String?,
-      views: json['views'] as int?,
-      dateStart: json['date_start'] as String?,
-      duration: json['duration'] as int?,
-      place: $enumDecodeNullable(_$PlacesEnumMap, json['place']),
-      total: (json['total'] as num?)?.toDouble(),
-    );
+AdsEntity _$AdsEntityFromJson(Map<String, dynamic> json) {
+  return AdsEntity(
+    id: json['id'] as int?,
+    description: json['description'] as String?,
+    images: json['images'] as String?,
+    title: json['title'] as String?,
+    price: _parseDouble(json['price']),
+    createdAt: json['created_at'] as String?,
+    status: json['status'] as String?,
+    views: int.tryParse(json['views']?.toString() ?? ''),
+    dateStart: json['date_start'] as String?,
+    duration: _parseInt(json['duration']),
+    place: $enumDecodeNullable(_$PlacesEnumMap, json['place']),
+    total: _parseDouble(json['total']),
+  );
+}
+
+double? _parseDouble(dynamic value) {
+  if (value is int) {
+    return value.toDouble();
+  } else if (value is String) {
+    return double.tryParse(value);
+  } else {
+    return null;
+  }
+}
+
+int? _parseInt(dynamic value) {
+  if (value is int) {
+    return value;
+  } else if (value is String) {
+    return int.tryParse(value);
+  } else {
+    return null;
+  }
+}
 
 Map<String, dynamic> _$AdsEntityToJson(AdsEntity instance) => <String, dynamic>{
       'id': instance.id,

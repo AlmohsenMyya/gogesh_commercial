@@ -636,7 +636,7 @@ class HomeScreen extends HookWidget {
                             }///your account has been disabled by the administration due to a violation of a regulatory matter
                             if (user != null &&
                                 user.upgraded?.upgradedStatus == "Pending") {
-                              print(' user.upgraded?.upgradedStatus == "Pending"');
+                              print(' user.upgraded?.upgradedStatus55555 == "Pending"');
                               SmartDialog.show(
                                 builder: (context) => Container(
                                   height: 25.h,
@@ -978,6 +978,16 @@ class HomeScreen extends HookWidget {
                               );
                               return;
                             } /// Rejected notice
+                            if (user != null &&
+                                user?.upgraded != null &&
+                                user.upgraded?.upgradedStatus == "Not_Paid" &&
+                                user.actived == false) {
+                              print(''' user.upgraded?.upgradedStatus == "Not_Paid" ''');
+                              context.pushNamed(Routes.addOffers.name);
+
+                              // smartDialogPayment(context);
+                              return;
+                            } /// push to pay (now it just push to add offer)
                             if (user != null && user.status == "Pending") {
                               SmartDialog.show(
                                 builder: (context) => Container(
@@ -995,7 +1005,7 @@ class HomeScreen extends HookWidget {
                                       padding: const EdgeInsets.all(10.0),
                                       child: Column(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        CrossAxisAlignment.center,
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.symmetric(
@@ -1042,6 +1052,72 @@ class HomeScreen extends HookWidget {
                               );
                               return;
                             } /// pending notice
+                            if (user != null && user?.upgraded != null &&  user.upgraded?.upgradedStatus == "Pending") {
+                              SmartDialog.show(
+                                builder: (context) => Container(
+                                  height: 25.h,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.white,
+                                  ),
+                                  alignment: Alignment.topCenter,
+                                  child: SingleChildScrollView(
+                                    physics: const BouncingScrollPhysics(),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 8),
+                                            child: Text(
+                                              "Notice",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Colors.red,
+                                                fontSize: 20.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ).tr(),
+                                          ),
+                                          Align(
+                                            alignment: Alignment.topRight,
+                                            child: Text(
+                                              'description',
+                                              style: TextStyle(
+                                                fontSize: 15.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ).tr(),
+                                          ),
+                                          Align(
+                                            alignment: Alignment.topRight,
+                                            child: Text(
+                                              "We would like to alert you that your account is under review by the administration and you will be notified of a response within 48 hours",
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ).tr(),
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                              return;
+                            } /// pending notice
+
+
                             if (user != null && user.status == "Active") {
 
                               context.pushNamed(Routes.upgradeAccount.name);

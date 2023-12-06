@@ -82,7 +82,7 @@ class PlacesAdapter extends TypeAdapter<Places> {
 PlacesEntity _$PlacesEntityFromJson(Map<String, dynamic> json) => PlacesEntity(
       id: json['id'] as int,
       place: $enumDecodeNullable(_$PlacesEnumMap, json['place']),
-      price: (json['price'] as num?)?.toDouble(),
+      price: double.tryParse(json['price'] ?? ' ' ),
     );
 
 Map<String, dynamic> _$PlacesEntityToJson(PlacesEntity instance) =>

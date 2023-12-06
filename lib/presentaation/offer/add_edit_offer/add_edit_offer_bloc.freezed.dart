@@ -2721,7 +2721,7 @@ class _$_Error implements _Error {
 
   @override
   String toString() {
-    return 'AddEditOfferState.error(msg: $msg)';
+    return 'AddEditOfferState.error(msg:00 $msg)';
   }
 
   @override

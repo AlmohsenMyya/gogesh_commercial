@@ -37,6 +37,7 @@ import '../presentaation/main/bloc/messages_pill_cubit.dart';
 import '../presentaation/main/bloc/notification_pill_cubit.dart';
 import '../presentaation/main/bloc/side_menu_cubit.dart';
 import '../presentaation/notifications/bloc/notification_bloc.dart';
+import '../presentaation/offer/bloc/image_pick_bloc.dart';
 import '../presentaation/register_company/bloc/register_company_bloc.dart';
 
 class MyApp extends StatelessWidget {
@@ -79,6 +80,9 @@ class MyApp extends StatelessWidget {
               create: (context) => SectorBloc(getSectorsUseCase: sl())),
           BlocProvider(
             create: (context) => CityBloc(getCityUseCase: sl()),
+          ),
+          BlocProvider(
+            create: (context) => ImagePickBloc(),
           ),
           BlocProvider(
               create: (context) => SeasonsBloc(

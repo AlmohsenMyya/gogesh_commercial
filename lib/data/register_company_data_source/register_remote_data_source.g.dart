@@ -76,7 +76,7 @@ class _RegisterRemoteDataSource implements RegisterRemoteDataSource {
     )
             .compose(
               _dio.options,
-              '/seller-details',
+              '/seller/details/5',
               queryParameters: queryParameters,
               data: _data,
             )

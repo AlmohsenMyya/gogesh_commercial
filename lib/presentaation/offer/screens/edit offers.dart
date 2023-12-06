@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -34,6 +35,7 @@ import '../../../app/theme.dart';
 import '../../../domain/request/offers/offer_request.dart';
 import '../../auth/widgets/drop_down.dart';
 import '../../register_company/activity/activity_bloc.dart';
+import '../../register_company/screens/update_company_screen.dart';
 import '../../register_company/seasons/seasons_bloc.dart';
 import '../../register_company/sector/sector_bloc.dart';
 import '../../register_company/specialization/specialization_bloc.dart';
@@ -1340,12 +1342,16 @@ class Editoffers extends HookWidget {
                                                     TypeAlert.warning);
                                                 return;
                                               } else {
+
                                                 context
                                                     .read<AddEditOfferBloc>()
                                                     .add(
                                                       AddEditOfferEvent
                                                           .editOffers(
                                                         request: OfferRequest(
+                                                          specializationId: [specializationId!],
+
+
                                                           dateFinish: dateEnd,
                                                           dateStart: dateStart,
                                                           id: offer.id!,

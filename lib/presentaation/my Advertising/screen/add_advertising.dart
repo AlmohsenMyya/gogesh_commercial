@@ -31,6 +31,7 @@ import 'package:sizer/sizer.dart';
 import 'package:string_validator/string_validator.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import '../../../app/theme.dart';
+import '../../auth/city_bloc/city_bloc.dart';
 import '../../widgets/costume_button.dart';
 import '../../widgets/input_text_field.dart';
 
@@ -449,9 +450,7 @@ class AddAdvertising extends HookWidget {
                                                       item: v!,
                                                     ));
                                                 placeName = v.place;
-
                                                 priceDay = v.price;
-
                                                 total.text = pricingPlaces(
                                                     information: information,
                                                     place: placeName!,
@@ -512,16 +511,16 @@ class AddAdvertising extends HookWidget {
                                       hint: 'Choose_your_place_ads',
                                       data: [],
                                       onChange: (v) {
-                                        // context.read<PlacesBloc>().add(
-                                        //     CityEvent.changeItem(item: v!));
+                                        context.read<PlacesBloc>().add(
+                                            PlacesEvent.changeItem(item: v!));
                                       },
                                     ),
                                 orElse: () => DropDownAdsWidget(
                                       hint: 'Choose_your_place_ads',
                                       data: [],
                                       onChange: (v) {
-                                        // context.read<PlacesBloc>().add(
-                                        //     CityEvent.changeItem(item: v!));
+                                        context.read<PlacesBloc>().add(
+                                            PlacesEvent.changeItem(item: v!));
                                       },
                                     ));
                           },
@@ -562,8 +561,9 @@ class AddAdvertising extends HookWidget {
                                   ),
                                 );
 
-                                if (newDateTime != null &&
-                                    newDateTime.toString() != dateStart) {
+                                if (newDateTime != null
+                                // && newDateTime.toString() != dateStart
+                                ) {
                                   setState(
                                     () {
                                       dateStart = DateFormat('yyyy-MM-dd', 'en')
@@ -624,17 +624,21 @@ class AddAdvertising extends HookWidget {
                               }
                               return "please_enter_price".tr();
                             }),
-                        InputTextField(
-                            readOnly: true,
-                            textInputAction: TextInputAction.none,
-                            label: "total".tr(),
-                            hint: "total".tr(),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        TextField(
+                          enabled: false,
+                          controller: total,
+                          decoration: InputDecoration(
+                            hintText: "total".tr(),
                             suffixIcon: const Icon(
                               Iconsax.money_send,
                               color: AppTheme.green,
                             ),
-                            controller: total,
-                            validator: (value) {}),
+                          ),
+                        ),
+
                         SizedBox(
                           height: 2.h,
                         ),

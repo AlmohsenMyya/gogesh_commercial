@@ -90,7 +90,7 @@ StandarEntity _$StandarEntityFromJson(Map<String, dynamic> json) =>
       subSuctor: json['sub_sector'] == null
           ? null
           : StandarEntity.fromJson(json['sub_sector'] as Map<String, dynamic>),
-      code: json['code'] as int?,
+      code: int.tryParse(json['code'] ?? ''),
     );
 
 Map<String, dynamic> _$StandarEntityToJson(StandarEntity instance) =>

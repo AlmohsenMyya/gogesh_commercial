@@ -7,6 +7,7 @@ part of 'offer_request.dart';
 // **************************************************************************
 
 OfferRequest _$OfferRequestFromJson(Map<String, dynamic> json) => OfferRequest(
+      specializationId: json['specialities_id']  ,
       title: json['title'] as String,
       durationId: json['durationId'] as int?,
       seasonId: json['seasonId'] as int,
@@ -36,6 +37,7 @@ Map<String, dynamic> _$OfferRequestToJson(OfferRequest instance) =>
       'discount': instance.discount,
       'durationId': instance.durationId,
       'seasonId': instance.seasonId,
+      'specialities_id': instance.specializationId,
       'id': instance.id,
       'video': instance.video,
       'image': instance.image,

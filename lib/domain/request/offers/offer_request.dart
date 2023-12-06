@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:commmercial_directory_seller/core/use_case/use_case.dart';
@@ -9,6 +10,7 @@ part 'offer_request.g.dart';
 class OfferRequest extends Params {
   const OfferRequest(
       {required this.title,
+         this.specializationId,
       required this.durationId,
       required this.seasonId,
       required this.description,
@@ -25,6 +27,7 @@ class OfferRequest extends Params {
       required this.total});
 
   final String title;
+  final List<int?>? specializationId ;
   final String description;
   final String conditions;
   final double price;

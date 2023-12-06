@@ -142,7 +142,7 @@ class ProfileEntity {
   @HiveField(28)
   final String? reason;
   @HiveField(29)
-  final bool?actived;
+  final bool? actived;
   factory ProfileEntity.fromJson(Map<String, dynamic> json) =>
       _$ProfileEntityFromJson(json);
 
@@ -184,8 +184,10 @@ class Upgraded {
   @JsonKey(name: 'delivery_price')
   final double? deliveryPrice;
 
-  factory Upgraded.fromJson(Map<String, dynamic> json) =>
-      _$UpgradedFromJson(json);
+  factory Upgraded.fromJson(Map<String, dynamic> json) {
+
+    return _$UpgradedFromJson(json);
+  }
 
   Map<String, dynamic> toJson() => _$UpgradedToJson(this);
 }

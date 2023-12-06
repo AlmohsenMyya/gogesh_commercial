@@ -146,22 +146,42 @@ Map<String, dynamic> _$OfferDetailsRasponseToJson(
     <String, dynamic>{
       'data': instance.data,
     };
-
+double? _parseDouble(dynamic value) {
+  if (value is int) {
+    return value.toDouble();
+  } else if (value is String) {
+    return double.tryParse(value);
+  } else {
+    return null;
+  }
+}
+int? _parseInt(dynamic value) {
+  if (value is int) {
+    return value;
+  } else if (value is String) {
+    return int.tryParse(value);
+  } else {
+    return null;
+  }
+}
 OfferEntity _$OfferEntityFromJson(Map<String, dynamic> json) => OfferEntity(
-      price: (json['price'] as num?)?.toDouble(),
+      price: _parseDouble(json['price']),
       id: json['id'] as int?,
       title: json['title'] as String?,
       description: json['description'] as String?,
       bold: json['bold'] as bool?,
       images:
           (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      views: json['views'] as int?,
-      createdAt: json['created_at'] as String?,
+      views: int.tryParse( json['views'] ?? ''),
+
+  createdAt: json['created_at'] as String?,
       activity: json['activity'] == null
           ? null
           : StandarEntity.fromJson(json['activity'] as Map<String, dynamic>),
-      discount: json['discount'] as int?,
-      duration: json['duration'] == null
+      discount: _parseInt(json['discount'] ?? ''),
+
+
+  duration: json['duration'] == null
           ? null
           : DurationsEntity.fromJson(json['duration'] as Map<String, dynamic>),
       season: json['season'] == null

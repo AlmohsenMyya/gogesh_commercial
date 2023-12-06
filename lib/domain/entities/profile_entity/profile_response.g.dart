@@ -288,7 +288,7 @@ Map<String, dynamic> _$ProfileEntityToJson(ProfileEntity instance) =>
     };
 
 Upgraded _$UpgradedFromJson(Map<String, dynamic> json) => Upgraded(
-      deliveryPrice: (json['delivery_price'] as num?)?.toDouble(),
+  deliveryPrice: double.tryParse(json['delivery_price'] as String? ?? ''),
       logo: json['logo'] as String?,
       seasonsId: (json['seasons_id'] as List<dynamic>?)
           ?.map((e) => StandarEntity.fromJson(e as Map<String, dynamic>))

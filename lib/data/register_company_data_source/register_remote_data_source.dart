@@ -29,7 +29,7 @@ abstract class RegisterRemoteDataSource {
     @Header("Accept-Language") required String language,
     @Header("Authorization") required String auth,
   });
-  @GET("/seller-details")
+  @GET("/seller/details/5")
   Future<HttpResponse<CompanyResponse>> detailsCompany({
     @Header("Accept-Language") required String language,
     @Header("Authorization") required String auth,

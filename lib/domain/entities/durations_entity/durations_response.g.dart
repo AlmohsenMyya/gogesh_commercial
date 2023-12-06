@@ -52,13 +52,31 @@ class DurationsEntityAdapter extends TypeAdapter<DurationsEntity> {
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
-
+int? _parseInt(dynamic value) {
+  if (value is int) {
+    return value;
+  } else if (value is String) {
+    return int.tryParse(value);
+  } else {
+    return null;
+  }
+}
+double? _parseDouble(dynamic value) {
+  if (value is int) {
+    return value.toDouble();
+  } else if (value is String) {
+    return double.tryParse(value);
+  }
+  else {
+    return null;
+  }
+}
 DurationsEntity _$DurationsEntityFromJson(Map<String, dynamic> json) =>
     DurationsEntity(
       id: json['id'] as int?,
       type: json['type'] as String?,
-      duration: json['duration'] as int?,
-      price: (json['price'] as num?)?.toDouble(),
+      duration: _parseInt(json['duration'] ),
+      price: _parseDouble(json['price'] ),
     );
 
 Map<String, dynamic> _$DurationsEntityToJson(DurationsEntity instance) =>

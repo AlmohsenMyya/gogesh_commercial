@@ -901,9 +901,11 @@ class AddOffers extends HookWidget {
                                           "please_choose_seasons".tr(),
                                           TypeAlert.warning);
                                     } else {
+
                                       context.read<AddEditOfferBloc>().add(
                                             AddEditOfferEvent.addOffer(
                                               request: OfferRequest(
+                                                // specializationId: [specializationId!],
                                                 dateFinish: dateEnd,
                                                 dateStart: dateStart,
                                                 title: nameoffer.text,
@@ -937,7 +939,9 @@ class AddOffers extends HookWidget {
                                       LoadingAnimationWidget.prograssiveDots(
                                           color: AppTheme.primaryColor,
                                           size: 20.sp),
+
                                 ),
+
                               ),
                             );
                           },
