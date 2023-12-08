@@ -44,6 +44,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:multi_dropdown/multiselect_dropdown.dart';
+import 'package:pinput/pinput.dart';
 import 'package:searchable_paginated_dropdown/searchable_dropdown_controller.dart';
 import 'package:searchable_paginated_dropdown/searchable_paginated_dropdown.dart';
 import 'package:sizer/sizer.dart';
@@ -925,7 +926,7 @@ class RegisterSellerScreen extends HookWidget {
                                       value.isNotEmpty &&
                                       value.length >= 4) {
                                     return null;
-                                  } else if (value!.length < 4 &&
+                                  } else if (value!.length < 20 &&
                                       value.isNotEmpty) {
                                     return "The_overview_of_your_business_is_very_short";
                                   }
@@ -1208,181 +1209,189 @@ class RegisterSellerScreen extends HookWidget {
                     ),
                     SizedBox(
                       width: double.infinity,
-                      child: custombuttom(
-                        onTap: () async {
-                          if (!_formKey.currentState!.validate()) {
-                            return;
-                          }
-                          if (typeCompanty == null) {
-                            AlertController.show("", "choose_type_account".tr(),
-                                TypeAlert.warning);
-                            return;
-                          }
-                          if (selectedItemsService.isEmpty) {
-                            AlertController.show(
-                                "",
-                                "Please_choose_what_to_offer".tr(),
-                                TypeAlert.warning);
-                            return;
-                          }
-                          if (selectedItemsSections.isEmpty &&
-                              selectedItemsService
-                                  .any((element) => element.hasSections!)) {
-                            AlertController.show(
-                                "",
-                                "Please_choose_subservices".tr(),
-                                TypeAlert.warning);
-                            return;
-                          }
-                          if (activityId == null) {
-                            AlertController.show(
-                                "",
-                                "please_choose_activity".tr(),
-                                TypeAlert.warning);
-                            return;
-                          }
-
-                          if (subSuctorId == null) {
-                            AlertController.show(
-                                "",
-                                "please_choose_subSector".tr(),
-                                TypeAlert.warning);
-                            return;
-                          }
-
-                          if (sectorId == null) {
-                            AlertController.show("",
-                                "please_choose_sector".tr(), TypeAlert.warning);
-                            return;
-                          }
-                          if (intityCard.isEmpty) {
-                            AlertController.show(
-                                "",
-                                "Please_upload_a_photo_of_the_front_and_back_of_your_civil_ID"
-                                    .tr(),
-                                TypeAlert.warning);
-                            return;
-                          }
-                          if (typeCompanty == "Company" && lisence.isEmpty) {
-                            AlertController.show(
-                                "",
-                                "Please_upload_a_copy_of_the_commercial_license"
-                                    .tr(),
-                                TypeAlert.warning);
-                          }
-                          if (typeCompanty == "Company" && signature.isEmpty) {
-                            AlertController.show(
-                                "",
-                                "Please_upload_a_copy_of_the_signature_approval"
-                                    .tr(),
-                                TypeAlert.warning);
-                          }
-
-                          if (_formKey.currentState!.validate()) {
-                            if (user == null) {
-                              context.read<AuthBloc>().add(
-                                    AuthEvent.registerPrimary(
-                                      request: RegisterPrimarySeller(
-                                          fcmToken: informationPrimay.fcmToken,
-                                          sectionId:
-                                              selectedItemsSections.isNotEmpty
-                                                  ? selectedItemsSections
-                                                  : null,
-                                          serviceId: selectedItemsService,
-                                          password: informationPrimay.password,
-                                          passwordConfirmation:
-                                              informationPrimay.password,
-                                          description:
-                                              descriptionCommercial.text,
-                                          nameCommercial: nameCommercial.text,
-                                          phoneCommercial:
-                                              "${phoneNumber?.isoCode}-${phoneNumber?.dialCode}-${phoneCommercial.text.replaceAll(" ", "")}",
-                                          phone: informationPrimay.phone,
-                                          lastname: informationPrimay.lastname,
-                                          firstname:
-                                              informationPrimay.firstname,
-                                          country: informationPrimay.country,
-                                          email: informationPrimay.email,
-                                          city: informationPrimay.city,
-                                          region: informationPrimay.region,
-                                          countryId:
-                                              informationPrimay.countryId,
-                                          regionId: informationPrimay.regionId,
-                                          cityId: informationPrimay.cityId,
-                                          activityId: activityId,
-                                          sectorId: sectorId,
-                                          subSectors: subSuctorId,
-                                          civilCard: intityCard,
-                                          lisence: lisence,
-                                          singnature: signature,
-                                          type: typeCompanty),
-                                    ),
-                                  );
-                            } else {
-                              context.read<AuthBloc>().add(
-                                    AuthEvent.completeRegister(
-                                      request: RegisterPrimarySeller(
-                                          fcmToken: informationPrimay.fcmToken,
-                                          sectionId:
-                                              selectedItemsSections.isNotEmpty
-                                                  ? selectedItemsSections
-                                                  : null,
-                                          serviceId: selectedItemsService,
-                                          description:
-                                              descriptionCommercial.text,
-                                          nameCommercial: nameCommercial.text,
-                                          phoneCommercial:
-                                              "${phoneNumber?.isoCode}-${phoneNumber?.dialCode}-${phoneCommercial.text.replaceAll(" ", "")}",
-                                          phone: informationPrimay.phone,
-                                          lastname: informationPrimay.lastname,
-                                          firstname:
-                                              informationPrimay.firstname,
-                                          country: informationPrimay.country,
-                                          email: informationPrimay.email,
-                                          city: informationPrimay.city,
-                                          region: informationPrimay.region,
-                                          countryId:
-                                              informationPrimay.countryId,
-                                          regionId: informationPrimay.regionId,
-                                          cityId: informationPrimay.cityId,
-                                          activityId: activityId,
-                                          sectorId: sectorId,
-                                          subSectors: subSuctorId,
-                                          civilCard: intityCard,
-                                          lisence: lisence,
-                                          singnature: signature,
-                                          type: typeCompanty),
-                                    ),
-                                  );
-                            }
-                          } else if (gender == null) {
-                            AlertController.show("", "Choose_the_gender".tr(),
-                                TypeAlert.warning);
-                            return;
-                          } else if (!isChecked!) {
-                            AlertController.show(
-                                "",
-                                "agree to the terms and conditions".tr(),
-                                TypeAlert.warning);
-                          }
-                        },
-                        child: BlocBuilder<AuthBloc, AuthState>(
-                          buildWhen: (previous, current) => current.maybeWhen(
-                            orElse: () => false,
-                            registered: (s) => true,
-                            error: (error, e) => true,
-                            loading: () => true,
-                          ),
-                          builder: (context, state) {
-                            return state.maybeWhen(
-                              orElse: () => const Text("sing_up").tr(),
-                              loading: () =>
-                                  LoadingAnimationWidget.prograssiveDots(
-                                      color: AppTheme.primaryColor,
-                                      size: 20.sp),
-                            );
-                          },
+                      child: BlocBuilder<AuthBloc, AuthState>(
+                        buildWhen: (previous, current) => current.maybeWhen(
+                          orElse: () => false,
+                          registered: (s) => true,
+                          error: (error, e) => true,
+                          socialLoading: () => true,
                         ),
+                        builder: (context, state) {
+                          return state.maybeWhen(
+                            orElse: () => custombuttom(
+                                onTap: () async {
+                                  if (!_formKey.currentState!.validate()) {
+                                    return;
+                                  }
+                                  if (descriptionCommercial.length<20){
+                                    AlertController.show("", "The_overview_of_your_business_is_very_short".tr(),
+                                        TypeAlert.warning);
+                                    return;
+                                  }
+                                  if (typeCompanty == null) {
+                                    AlertController.show("", "choose_type_account".tr(),
+                                        TypeAlert.warning);
+                                    return;
+                                  }
+                                  if (selectedItemsService.isEmpty) {
+                                    AlertController.show(
+                                        "",
+                                        "Please_choose_what_to_offer".tr(),
+                                        TypeAlert.warning);
+                                    return;
+                                  }
+                                  if (selectedItemsSections.isEmpty &&
+                                      selectedItemsService
+                                          .any((element) => element.hasSections!)) {
+                                    AlertController.show(
+                                        "",
+                                        "Please_choose_subservices".tr(),
+                                        TypeAlert.warning);
+                                    return;
+                                  }
+                                  if (activityId == null) {
+                                    AlertController.show(
+                                        "",
+                                        "please_choose_activity".tr(),
+                                        TypeAlert.warning);
+                                    return;
+                                  }
+
+                                  if (subSuctorId == null) {
+                                    AlertController.show(
+                                        "",
+                                        "please_choose_subSector".tr(),
+                                        TypeAlert.warning);
+                                    return;
+                                  }
+
+                                  if (sectorId == null) {
+                                    AlertController.show("",
+                                        "please_choose_sector".tr(), TypeAlert.warning);
+                                    return;
+                                  }
+                                  if (intityCard.isEmpty) {
+                                    AlertController.show(
+                                        "",
+                                        "Please_upload_a_photo_of_the_front_and_back_of_your_civil_ID"
+                                            .tr(),
+                                        TypeAlert.warning);
+                                    return;
+                                  }
+                                  if (typeCompanty == "Company" && lisence.isEmpty) {
+                                    AlertController.show(
+                                        "",
+                                        "Please_upload_a_copy_of_the_commercial_license"
+                                            .tr(),
+                                        TypeAlert.warning);
+                                  }
+                                  if (typeCompanty == "Company" && signature.isEmpty) {
+                                    AlertController.show(
+                                        "",
+                                        "Please_upload_a_copy_of_the_signature_approval"
+                                            .tr(),
+                                        TypeAlert.warning);
+                                  }
+
+                                  if (_formKey.currentState!.validate()) {
+                                    if (user == null) {
+                                      context.read<AuthBloc>().add(
+                                        AuthEvent.registerPrimary(
+                                          request: RegisterPrimarySeller(
+                                              fcmToken: informationPrimay.fcmToken,
+                                              sectionId:
+                                              selectedItemsSections.isNotEmpty
+                                                  ? selectedItemsSections
+                                                  : null,
+                                              serviceId: selectedItemsService,
+                                              password: informationPrimay.password,
+                                              passwordConfirmation:
+                                              informationPrimay.password,
+                                              description:
+                                              descriptionCommercial.text,
+                                              nameCommercial: nameCommercial.text,
+                                              phoneCommercial:
+                                              "${phoneNumber?.isoCode}-${phoneNumber?.dialCode}-${phoneCommercial.text.replaceAll(" ", "")}",
+                                              phone: informationPrimay.phone,
+                                              lastname: informationPrimay.lastname,
+                                              firstname:
+                                              informationPrimay.firstname,
+                                              country: informationPrimay.country,
+                                              email: informationPrimay.email,
+                                              city: informationPrimay.city,
+                                              region: informationPrimay.region,
+                                              countryId:
+                                              informationPrimay.countryId,
+                                              regionId: informationPrimay.regionId,
+                                              cityId: informationPrimay.cityId,
+                                              activityId: activityId,
+                                              sectorId: sectorId,
+                                              subSectors: subSuctorId,
+                                              civilCard: intityCard,
+                                              lisence: lisence,
+                                              singnature: signature,
+                                              type: typeCompanty),
+                                        ),
+                                      );
+                                    } else {
+                                      context.read<AuthBloc>().add(
+                                        AuthEvent.completeRegister(
+                                          request: RegisterPrimarySeller(
+                                              fcmToken: informationPrimay.fcmToken,
+                                              sectionId:
+                                              selectedItemsSections.isNotEmpty
+                                                  ? selectedItemsSections
+                                                  : null,
+                                              serviceId: selectedItemsService,
+                                              description:
+                                              descriptionCommercial.text,
+                                              nameCommercial: nameCommercial.text,
+                                              phoneCommercial:
+                                              "${phoneNumber?.isoCode}-${phoneNumber?.dialCode}-${phoneCommercial.text.replaceAll(" ", "")}",
+                                              phone: informationPrimay.phone,
+                                              lastname: informationPrimay.lastname,
+                                              firstname:
+                                              informationPrimay.firstname,
+                                              country: informationPrimay.country,
+                                              email: informationPrimay.email,
+                                              city: informationPrimay.city,
+                                              region: informationPrimay.region,
+                                              countryId:
+                                              informationPrimay.countryId,
+                                              regionId: informationPrimay.regionId,
+                                              cityId: informationPrimay.cityId,
+                                              activityId: activityId,
+                                              sectorId: sectorId,
+                                              subSectors: subSuctorId,
+                                              civilCard: intityCard,
+                                              lisence: lisence,
+                                              singnature: signature,
+                                              type: typeCompanty),
+                                        ),
+                                      );
+                                    }
+                                  } else if (gender == null) {
+                                    AlertController.show("", "Choose_the_gender".tr(),
+                                        TypeAlert.warning);
+                                    return;
+                                  } else if (!isChecked!) {
+                                    AlertController.show(
+                                        "",
+                                        "agree to the terms and conditions".tr(),
+                                        TypeAlert.warning);
+                                  }
+                                },
+                                child: const Text("sing_up").tr()),
+                            socialLoading :( )=>
+                              custombuttom(
+                                onTap: () {   AlertController.show("", "Your request is being processed".tr(),
+                                    TypeAlert.warning);},
+                                child: LoadingAnimationWidget.prograssiveDots(
+                                    color: AppTheme.primaryColor,
+                                    size: 20.sp),
+                              ),
+                          );
+                        },
                       ),
                     )
                   ],
