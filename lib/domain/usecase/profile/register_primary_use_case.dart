@@ -74,9 +74,9 @@ class RegisterPrimarySellerUseCase
       }
 
       if (params.type == "Company") {
-        body.files.add(MapEntry("commercial_register",
+        body.files.add(MapEntry("commercial_license",
             await MultipartFile.fromFile(params.lisence!)));
-        body.files.add(MapEntry("commercial_signature",
+        body.files.add(MapEntry("signature_approval",
             await MultipartFile.fromFile(params.singnature!)));
       }
 
