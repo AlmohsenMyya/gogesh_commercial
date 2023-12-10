@@ -32,6 +32,7 @@ import '../../assets.dart';
 import '../../domain/entities/chat_entity/conversation_response.dart';
 import '../chat/conversationSupport_bloc/conversation_bloc.dart';
 import '../chat/conversation_customer_bloc/conversation_customer_bloc.dart';
+import '../home/screens/home_screen.dart';
 import 'bloc/bottom_nav_cubit.dart';
 import 'bloc/messages_pill_cubit.dart';
 import 'bloc/notification_pill_cubit.dart';
@@ -768,6 +769,7 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 Future<dynamic> smartDialogPayment(BuildContext context) {
+  final navigatorKey = GlobalKey<NavigatorState>();
   return SmartDialog.show(
     builder: (_) {
       return Container(
@@ -837,9 +839,9 @@ Future<dynamic> smartDialogPayment(BuildContext context) {
                         SizedBox(
                           width: 150,
                           child: custombuttom(
-                            onTap: () {
+                            onTap: ()  {
+                              // context.goNamed(Routes.home.name);
                               SmartDialog.dismiss();
-                              context.pushNamed(Routes.home.name);
                             },
                             child: const Text("pay_latter0").tr(),
                           ),

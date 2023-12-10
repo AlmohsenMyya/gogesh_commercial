@@ -38,11 +38,42 @@ List<bool> listIsChecked = [
 
 List<StandarEntity> days = [];
 
+String? validateTime(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'Time is required';
+  }
+
+  // Check if the time matches the "00:00" format
+  final RegExp timeRegex = RegExp(r'^\d{2}:\d{2}$');
+  if (!timeRegex.hasMatch(value)) {
+    return 'Invalid time format';
+  }
+
+  // Split the time into hours and minutes
+  final List<String> timeParts = value.split(':');
+  final int hours = int.tryParse(timeParts[0]) ?? 0;
+  final int minutes = int.tryParse(timeParts[1]) ?? 0;
+
+  // Check if the hours and minutes are within the desired range
+  if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
+    return 'Invalid time range';
+  }
+
+  // Convert the hours and minutes to a zero-padded string format
+  final String formattedTime = hours.toString().padLeft(2, '0') + ':' + minutes.toString().padLeft(2, '0');
+
+  // Update the input value with the formatted time
+  value = formattedTime;
+
+  return null; // Return null if validation passes
+}
+
 class SelectDaysScreen extends StatelessWidget {
   SelectDaysScreen({
     required this.information,
     super.key,
   });
+
   List<TextEditingController> textFieldto = [
     TextEditingController(),
     TextEditingController(),
@@ -62,6 +93,7 @@ class SelectDaysScreen extends StatelessWidget {
     TextEditingController(),
   ];
   final RegisterPartTwoSeller information;
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<RegisterCompanyBloc, RegisterCompanyState>(
@@ -72,7 +104,11 @@ class SelectDaysScreen extends StatelessWidget {
             AlertController.show("", msg?.tr() ?? "", TypeAlert.error);
           },
           succes: (msg) {
-            AlertController.show("", 'Your request has been submitted to the administration. Please now pay the 35 dollar activation fee and benefit from our free package'.tr(), TypeAlert.success);
+            AlertController.show(
+                "",
+                'Your request has been submitted to the administration. Please now pay the 35 dollar activation fee and benefit from our free package'
+                    .tr(),
+                TypeAlert.success);
             smartDialogPayment(context);
 
             textFieldto.forEach((element) {
@@ -123,13 +159,26 @@ class SelectDaysScreen extends StatelessWidget {
                                         hint: "days",
                                         enabled: listIsChecked[index],
                                         onChanged: (p0) {
+                                          print("0000 $p0");
                                           setstate(() {});
                                         },
                                         value: listIsChecked[index],
                                         controllerfrom: textFieldfrom[index],
-                                        validatorfrom: (valuefrom) {},
+                                        validatorfrom: (valuefrom) {
+                                          try {
+                                            return validateTime(valuefrom);
+                                          } catch (e) {
+                                            return 'Invalid time';
+                                          }
+                                        },
                                         controllerto: textFieldto[index],
-                                        validatorto: (valueto) {},
+                                        validatorto: (valueto) {
+                                          try {
+                                            return validateTime(valueto);
+                                          } catch (e) {
+                                            return 'Invalid time';
+                                          }
+                                        },
                                       );
                                     }),
                                     Divider(
@@ -180,19 +229,16 @@ class SelectDaysScreen extends StatelessWidget {
                                               disabledColor: Colors.orange,
                                             ),
                                           );
-                                          if (start != null &&
-                                              "${start.hour}"
-                                                      ":"
-                                                      "${start.minute}" !=
-                                                  textFieldto[index].text) {
-                                            setstate(
-                                              () {
-                                                textFieldto[index].text =
-                                                    "${start.hour}"
-                                                    ":"
-                                                    "${start.minute}";
-                                              },
-                                            );
+                                          if (start != null) {
+                                            final String hour = start.hour.toString().padLeft(2, '0');
+                                            final String minute = start.minute.toString().padLeft(2, '0');
+                                            final String formattedTime = '$hour:$minute';
+
+                                            if (formattedTime != textFieldto[index].text) {
+                                              setstate(() {
+                                                textFieldto[index].text = formattedTime;
+                                              });
+                                            }
                                           }
                                         },
                                         onTapFrom: () async {
@@ -221,19 +267,16 @@ class SelectDaysScreen extends StatelessWidget {
                                               disabledColor: Colors.orange,
                                             ),
                                           );
-                                          if (start != null &&
-                                              "${start.hour}"
-                                                      ":"
-                                                      "${start.minute}" !=
-                                                  textFieldfrom[index].text) {
-                                            setstate(
-                                              () {
-                                                textFieldfrom[index].text =
-                                                    "${start.hour}"
-                                                    ":"
-                                                    "${start.minute}";
-                                              },
-                                            );
+                                          if (start != null) {
+                                            final String hour = start.hour.toString().padLeft(2, '0');
+                                            final String minute = start.minute.toString().padLeft(2, '0');
+                                            final String formattedTime = '$hour:$minute';
+
+                                            if (formattedTime != textFieldfrom[index].text) {
+                                              setstate(() {
+                                                textFieldfrom[index].text = formattedTime;
+                                              });
+                                            }
                                           }
                                         },
                                         hint: data.data[index].name!,
@@ -247,7 +290,6 @@ class SelectDaysScreen extends StatelessWidget {
                                             }
                                           });
                                         },
-
                                         value: listIsChecked[index],
                                         controllerfrom: textFieldfrom[index],
                                         validatorfrom: (valuefrom) {
@@ -340,7 +382,6 @@ class SelectDaysScreen extends StatelessWidget {
                                       workDays: workDays,
                                     ),
                                   ));
-
                             } else if (check == 0) {
                               AlertController.show(
                                   "",

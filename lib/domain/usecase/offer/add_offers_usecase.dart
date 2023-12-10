@@ -59,7 +59,7 @@ class AddOffersUseCase extends UseCase<String, OfferRequest> {
         body: body,
         language: keyLanguage,
       );
-      int maxOffers = information?.maxOffers! as int ;
+      int maxOffers = int.tryParse(information?.maxOffers! ?? "0")! ;
       if (maxOffers != 0) {
         await localDataSource.setValue(LocalDataKeys.infoamationPackage,
             information?.copyWith(maxOffers: maxOffers - 1));
@@ -89,11 +89,11 @@ class AddOffersUseCase extends UseCase<String, OfferRequest> {
           error: Exceptions.other(ex.response?.data["message"]));
     } on HttpException catch (e) {
       return Result.failure(error: Exceptions.other(e.message));
-    } catch (e) {
-      print('object');
-      print(e.toString());
-      return const Result.failure(
-          error: Exceptions.other("something_went_wrong"));
     }
+      // print('object');
+      // print(e.toString());
+      // return const Result.failure(
+      //     error: Exceptions.other("something_went_wrong"));
+
   }
 }

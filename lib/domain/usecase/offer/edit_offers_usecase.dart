@@ -104,11 +104,12 @@ class EditOffersUseCase extends UseCase<String, OfferRequest> {
           error: Exceptions.other(ex.response?.data["message"]));
     } on HttpException catch (e) {
       return Result.failure(error: Exceptions.other(e.message));
-    } catch (e) {
-      print('object');
-      print(e.toString());
-      return const Result.failure(
-          error: Exceptions.other("something_went_wrong"));
     }
+    // catch (e) {
+    //   print('object');
+    //   print(e.toString());
+    //   return const Result.failure(
+    //       error: Exceptions.other("something_went_wrong"));
+    // }
   }
 }
