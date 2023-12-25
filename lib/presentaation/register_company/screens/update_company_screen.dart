@@ -108,8 +108,8 @@ class MerchantAccountDevelopment extends HookWidget {
                 AlertController.show("", error.tr(), TypeAlert.error);
               }, locationPicked: () {
                 SmartDialog.show(
-                  backDismiss: false,
-                  clickMaskDismiss: false,
+                  backDismiss: true,
+                  clickMaskDismiss: true,
                   builder: (context) => const LocationBottomSheet(),
                   alignment: Alignment.bottomCenter,
                 );
@@ -136,8 +136,8 @@ class MerchantAccountDevelopment extends HookWidget {
                                   Geolocator.openLocationSettings();
                                   SmartDialog.dismiss();
                                   SmartDialog.show(
-                                    backDismiss: false,
-                                    clickMaskDismiss: false,
+                                    backDismiss: true,
+                                    clickMaskDismiss: true,
                                     builder: (context) =>
                                         const LocationBottomSheet(),
                                     alignment: Alignment.bottomCenter,
@@ -1043,8 +1043,8 @@ class MerchantAccountDevelopment extends HookWidget {
                                                         .openLocationSettings();
                                                     SmartDialog.dismiss();
                                                     SmartDialog.show(
-                                                      backDismiss: false,
-                                                      clickMaskDismiss: false,
+                                                      backDismiss: true,
+                                                      clickMaskDismiss: true,
                                                       builder: (context) =>
                                                           const LocationBottomSheet(),
                                                       alignment: Alignment

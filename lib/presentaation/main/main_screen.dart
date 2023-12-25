@@ -628,6 +628,9 @@ class _MainScreenState extends State<MainScreen> {
 
                                 break;
                               case 3:
+                                context.read<ProfileBloc>().add(
+                                  const ProfileEvent.loadedProfile(),
+                                );
                                 context.goNamed(Routes.me.name,
                                     extra: false,
                                     queryParameters: {"name": "me"});

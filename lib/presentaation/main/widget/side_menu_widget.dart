@@ -4,10 +4,12 @@ import 'package:commmercial_directory_seller/presentaation/auth/screens/login_sc
 import 'package:commmercial_directory_seller/presentaation/main/bloc/bloc/main_bloc.dart';
 import 'package:commmercial_directory_seller/presentaation/widgets/costume_button.dart';
 import 'package:commmercial_directory_seller/presentaation/widgets/profile_avatar.dart';
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart' as easy_localization;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -207,7 +209,9 @@ class SideMenuWidget extends StatelessWidget {
 
                 context.goNamed(Routes.auth.name);
                 await sl<LocalDataSource>().clear();
-
+                await sl<Dio>().options.headers.remove("Authorization");
+                await GoogleSignIn().signOut();
+                await FacebookAuth.instance.logOut();
                 sl<LocalDataSource>().setValue(
                   LocalDataKeys.userType,
                   UserType.onboarding,
