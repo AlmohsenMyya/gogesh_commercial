@@ -577,8 +577,7 @@ class AddOffers extends HookWidget {
                                 ),
                               );
 
-                              if (start != null &&
-                                  start.toString() != dateStart) {
+                              if (start != null ) {
                                 setState(
                                   () {
                                     dateStart = DateFormat('yyyy-MM-dd', 'en')
@@ -654,7 +653,7 @@ class AddOffers extends HookWidget {
                                 ),
                               );
 
-                              if (end != null && end.toString() != dateEnd) {
+                              if (end != null ) {
                                 setState(
                                   () {
                                     dateEnd = DateFormat('yyyy-MM-dd', 'en')
