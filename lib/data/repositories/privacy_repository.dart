@@ -29,7 +29,7 @@ class PrivacyRepositoryImpl implements PrivacyRepository {
         language: keyLanguage,
       );
       if (res.response.statusCode!.isOk) {
-        return Result.success(data: "");
+        return Result.success(data: res.response.data['data']);
       }
     } on DioException catch (ex) {
       _localDataSource.setValue(
