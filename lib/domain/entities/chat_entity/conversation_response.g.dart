@@ -8,8 +8,8 @@ part of 'conversation_response.dart';
 
 ConversationEntity _$ConversationEntityFromJson(Map<String, dynamic> json) =>
     ConversationEntity(
-      offerId: json['offer_id'] as int?,
-      adId: json['ad_id'] as int?,
+      offerId: int.tryParse(json['offer_id'].toString()),
+      adId: int.tryParse(json['ad_id'].toString()),
       adTitle: json['ad_title'] as String?,
       offerTitle: json['offer_title'] as String?,
       supportId: json['support_id'] as int?,
