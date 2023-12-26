@@ -81,7 +81,7 @@ class SellerConversationTap extends HookWidget {
                 delegate: SliverChildBuilderDelegate(
                     (context, index) => ConversationItem(
                           conversation: conversation[index],
-                          type: "support",
+
                         ),
                     childCount: conversation.length),
               ),
