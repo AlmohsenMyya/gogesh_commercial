@@ -105,7 +105,7 @@ class RegisterSellerScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     ProfileEntity? user = sl<LocalDataSource>().getValue(LocalDataKeys.profile);
-
+    FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
     bool? isChecked = false;
     final phoneCommercial = useTextEditingController();
     final nameCommercial = useTextEditingController();
@@ -1298,7 +1298,8 @@ class RegisterSellerScreen extends HookWidget {
                                       context.read<AuthBloc>().add(
                                         AuthEvent.registerPrimary(
                                           request: RegisterPrimarySeller(
-                                              fcmToken: informationPrimay.fcmToken,
+                                              fcmToken: await firebaseMessaging
+                                                  .getToken(),
                                               sectionId:
                                               selectedItemsSections.isNotEmpty
                                                   ? selectedItemsSections
@@ -1337,7 +1338,8 @@ class RegisterSellerScreen extends HookWidget {
                                       context.read<AuthBloc>().add(
                                         AuthEvent.completeRegister(
                                           request: RegisterPrimarySeller(
-                                              fcmToken: informationPrimay.fcmToken,
+                                              fcmToken: await firebaseMessaging
+                                                  .getToken(),
                                               sectionId:
                                               selectedItemsSections.isNotEmpty
                                                   ? selectedItemsSections

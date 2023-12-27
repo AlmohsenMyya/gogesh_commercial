@@ -3,13 +3,19 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../main.dart';
 
 class NotificationSetUp {
   static init() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
-    if (Platform.isIOS) {
+    String? fcmToken = await messaging.getToken() ;
+    print('JHBB54545 $fcmToken');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('fcmToken', fcmToken??"null problem");
+    if (
+    Platform.isIOS
+    ) {
       messaging.requestPermission(
           badge: true, alert: true, sound: true, announcement: true);
     }

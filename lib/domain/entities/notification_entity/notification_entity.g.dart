@@ -13,7 +13,7 @@ NotificationEntity _$NotificationEntityFromJson(Map<String, dynamic> json) =>
       date: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
-      offerId: int.tryParse(json['offer_id'] as String??""),
+      offerId: int.tryParse(json['offer_id']?? " " ),
       adId: json['ads_id'] as int?,
       type: json['type'] as String?,
     );

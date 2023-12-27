@@ -103,6 +103,7 @@ class RegisterSellerScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     bool? isChecked = false;
+    FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
     final phoneCommercial = useTextEditingController();
     final nameCommercial = useTextEditingController();
     final descriptionCommercial = useTextEditingController();
@@ -1263,7 +1264,8 @@ class RegisterSellerScreen extends HookWidget {
                           context.read<AuthBloc>().add(
                                 AuthEvent.registerPrimary(
                                   request: RegisterPrimarySeller(
-                                      fcmToken: informationPrimay.fcmToken,
+                                      fcmToken: await firebaseMessaging
+                                          .getToken(),
                                       sectionId:
                                           selectedItemsSections.isNotEmpty
                                               ? selectedItemsSections
