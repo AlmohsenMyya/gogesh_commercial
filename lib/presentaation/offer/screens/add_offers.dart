@@ -60,8 +60,17 @@ class AddOffers extends HookWidget {
   String? video;
   final SearchableDropdownController<StandarEntity> seasonsController =
       SearchableDropdownController();
+
   @override
   Widget build(BuildContext context) {
+    final dateStart = useState<String?>(null);
+    final dateEnd = useState<String?>(null);
+    void updateDateEnd(DateTime selectedDate) {
+      dateEnd.value = DateFormat('yyyy-MM-dd', 'en').format(selectedDate);
+    }
+    void updateDateStart(DateTime selectedDate) {
+      dateStart.value = DateFormat('yyyy-MM-dd', 'en').format(selectedDate);
+    }
     final nameoffer = useTextEditingController();
     final descriptionOffers = useTextEditingController();
     final termsOffers = useTextEditingController();
@@ -72,8 +81,7 @@ class AddOffers extends HookWidget {
 
     DateTime? start;
     DateTime? end;
-    String? dateStart;
-    String? dateEnd;
+
     InformationEntity? information =
         sl<LocalDataSource>().getValue(LocalDataKeys.infoamationPackage);
     if (information != null && information.maxOffers == 0) {
@@ -580,8 +588,7 @@ class AddOffers extends HookWidget {
                               if (start != null ) {
                                 setState(
                                   () {
-                                    dateStart = DateFormat('yyyy-MM-dd', 'en')
-                                        .format(start!);
+                                    updateDateStart(start!);
                                   },
                                 );
                               }
@@ -602,9 +609,9 @@ class AddOffers extends HookWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    dateStart == null
+                                    dateStart.value == null
                                         ? "Offer_start_date"
-                                        : dateStart!,
+                                        : dateStart.value!,
                                     style: TextStyle(
                                       color: dateStart == null
                                           ? const Color(0xffcecece)
@@ -656,8 +663,7 @@ class AddOffers extends HookWidget {
                               if (end != null ) {
                                 setState(
                                   () {
-                                    dateEnd = DateFormat('yyyy-MM-dd', 'en')
-                                        .format(end!);
+                                    updateDateEnd(end!);
                                   },
                                 );
                               }
@@ -678,9 +684,9 @@ class AddOffers extends HookWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    dateEnd == null
+                                    dateEnd.value == null
                                         ? "Offer_end_date"
-                                        : dateEnd!,
+                                        : dateEnd.value!,
                                     style: TextStyle(
                                       color: dateEnd == null
                                           ? const Color(0xffcecece)
@@ -905,8 +911,8 @@ class AddOffers extends HookWidget {
                                             AddEditOfferEvent.addOffer(
                                               request: OfferRequest(
                                                 // specializationId: [specializationId!],
-                                                dateFinish: dateEnd,
-                                                dateStart: dateStart,
+                                                dateFinish: dateEnd.value,
+                                                dateStart: dateStart.value,
                                                 title: nameoffer.text,
                                                 durationId: durationId,
                                                 seasonId: seasonsId!,
