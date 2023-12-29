@@ -28,9 +28,10 @@ class ChangePasswordScreen extends HookWidget {
     final newPassword = useTextEditingController();
     final confirmNewPassword = useTextEditingController();
     return BlocProvider(
-      create: (context) => ProfileBloc(
-        changePasswordUseCase: sl(),
-      ),
+      create: (context) =>
+          ProfileBloc(
+            changePasswordUseCase: sl(),
+          ),
       child: BlocListener<ProfileBloc, ProfileState>(
         listener: (context, state) {
           state.maybeWhen(
@@ -88,9 +89,10 @@ class ChangePasswordScreen extends HookWidget {
                             decoration: InputDecoration(
                                 hintText: "new_password".tr(),
                                 suffix: GestureDetector(
-                                  onTap: () => setState(() {
-                                    visible = !visible;
-                                  }),
+                                  onTap: () =>
+                                      setState(() {
+                                        visible = !visible;
+                                      }),
                                   child: visible
                                       ? const Icon(Ionicons.eye)
                                       : const Icon(Ionicons.eye_off),
@@ -119,9 +121,10 @@ class ChangePasswordScreen extends HookWidget {
                           decoration: InputDecoration(
                               hintText: "password_confirmation".tr(),
                               suffix: GestureDetector(
-                                onTap: () => setState(() {
-                                  visible = !visible;
-                                }),
+                                onTap: () =>
+                                    setState(() {
+                                      visible = !visible;
+                                    }),
                                 child: visible
                                     ? const Icon(Ionicons.eye)
                                     : const Icon(Ionicons.eye_off),
@@ -156,14 +159,12 @@ class ChangePasswordScreen extends HookWidget {
                               ),
                               onTap: () {
                                 if (_formKey.currentState!.validate()) {
-                                  context
-                                      .read<ProfileBloc>()
-                                      .add(ProfileEvent.changePassword(
-                                          request: EditPasswordRequest(
+                                  context.read<ProfileBloc>().add(ProfileEvent.changePassword(
+                                      request: EditPasswordRequest(
                                         newPassword: newPassword.text,
                                         oldPassword: oldPassword.text,
                                         newPasswordConfirmation:
-                                            confirmNewPassword.text,
+                                        confirmNewPassword.text,
                                       )));
                                 }
                               });

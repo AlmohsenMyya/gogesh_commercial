@@ -149,7 +149,7 @@ class _ProfileRemoteDataSource implements ProfileRemoteDataSource {
     )
             .compose(
               _dio.options,
-              '/seller/auth/update',
+              '/auth/seller/updatePassword',
               queryParameters: queryParameters,
               data: _data,
             )

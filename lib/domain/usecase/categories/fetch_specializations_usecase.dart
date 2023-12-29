@@ -27,7 +27,7 @@ class FetchSpecializationsUseCase implements UseCase<StandarPaginated, Filter> {
       final result = await remoteDataSource.getSpecialities(
         language: keyLanguage,
         queries: params.toJson(),
-        path: id == null ? "/specializations" : "/activities/$id",
+        path:  "/specializations" ,
       );
       return Result.success(data: result.data);
     } catch (e) {

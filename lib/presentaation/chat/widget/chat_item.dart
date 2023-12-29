@@ -46,7 +46,7 @@ class ConversationItem extends StatelessWidget {
                   fontSize: 17,
                   color: Colors.white),
               firstName: conversation.name?.split(" ")[0] ?? " ",
-              lastName: ""),
+              lastName: conversation.name?.split(" ")[1] ??" "),
           placeholder: (_, __) => Center(
             child: SkeletonItem(
                 child: Container(

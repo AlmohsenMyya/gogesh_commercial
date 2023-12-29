@@ -37,7 +37,7 @@ abstract class ProfileRemoteDataSource {
     @Header("Authorization") required String auth,
     @Body() required FormData body,
   });
-  @POST("/seller/auth/update")
+  @POST("/auth/seller/updatePassword")
   Future<HttpResponse> changePassword({
     @Header("Accept-Language") required String language,
     @Header("Authorization") required String auth,
