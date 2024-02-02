@@ -22,6 +22,7 @@ class Subscriptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Color> items = const [
+      Colors.blue,
       Color(0xFFF0E68C),
       Color(0xFFE5E4E2),
       Color(0xFF70FE73)
